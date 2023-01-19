@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,22 +10,22 @@ namespace Domain.Models
 {
     public class EnderecoModel
     {
-        [JsonPropertyName("cep")]
+        [JsonProperty(PropertyName = "cep")]
         public string? Cep;
 
-        [JsonPropertyName("state")]
+        [JsonProperty(PropertyName = "state")]
         public string? Estado;
 
-        [JsonPropertyName("city")]
+        [JsonProperty(PropertyName = "city")]
         public string? Cidade;
 
-        [JsonPropertyName("neighborhood")]
+        [JsonProperty(PropertyName = "neighborhood")]
         public string? Regiao;
 
-        [JsonPropertyName("street")]
+        [JsonProperty(PropertyName = "street")]
         public string? Rua;
 
-        [JsonPropertyName("service")]
+        [JsonProperty(PropertyName = "service")]
         public string? Servico;
     }
 }

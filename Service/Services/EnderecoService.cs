@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Dto;
-using Domain.Interface;
+using Domain.Interfaces.Proxy;
+using Domain.Interfaces.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +13,19 @@ namespace Service.Services
     public class EnderecoService : IEnderecoService
     {
         private readonly IMapper _mapper;
-        private readonly IBrasilApi _brasilApi;
+        private readonly IBrasilApiProxy _brasilApi;
 
-        public EnderecoService(IMapper mapper, IBrasilApi brasilApi)
+        public EnderecoService(IMapper mapper, IBrasilApiProxy brasilApi)
         {
             _mapper = mapper;
             _brasilApi = brasilApi;
         }
 
-        public async Task<ResponseGenerico<EnderecoResponse>> BuscarEndereco(string cep)
+        public async Task<EnderecoResponse> BuscarEndereco(string cep)
         {
             var endereco = await _brasilApi.BuscarEnderecoPorCep(cep);
-            return _mapper.Map<ResponseGenerico<EnderecoResponse>>(endereco);
+            var result = _mapper.Map<EnderecoResponse>(endereco);
+            return result;
         }
     }
 }

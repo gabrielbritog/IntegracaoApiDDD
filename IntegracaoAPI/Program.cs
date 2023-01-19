@@ -1,6 +1,7 @@
-using API.Mapping;
-using Domain.Interface;
-using Service.Rest;
+using Data.Proxy;
+using Domain.Interfaces.Proxy;
+using Domain.Interfaces.Service;
+using Service.Mapping;
 using Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,9 +14,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IEnderecoService, EnderecoService>();
 //builder.Services.AddSingleton<IBancoService, BancoService>();
-builder.Services.AddSingleton<IBrasilApi, BrasilApiRest>();
+builder.Services.AddSingleton<IBrasilApiProxy, BrasilApiProxy>();
+var config = new AutoMapper.MapperConfiguration(cfg => { cfg.AddProfile(new EnderecoMapping()); });
+builder.Services.AddSingleton(config.CreateMapper());
 
-builder.Services.AddAutoMapper(typeof(EnderecoMapping));
 
 var app = builder.Build();
 

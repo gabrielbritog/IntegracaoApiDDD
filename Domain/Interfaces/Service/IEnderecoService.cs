@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Interface
+namespace Domain.Interfaces.Service
 {
     public interface IEnderecoService
     {
-        Task<ResponseGenerico<EnderecoResponse>> BuscarEndereco(string cep);
+        Task<EnderecoResponse> BuscarEndereco(string cep);
 
     }
 }
