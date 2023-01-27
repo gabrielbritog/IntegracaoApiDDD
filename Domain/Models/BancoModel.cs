@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,16 +10,16 @@ namespace Domain.Models
 {
     public class BancoModel
     {
-        [JsonPropertyName("ispb")]
+        [JsonProperty(PropertyName = "ispb")]
         public string? Ispb;
 
-        [JsonPropertyName("name")]
+        [JsonProperty(PropertyName = "name")]      
         public string? NomeAbreviado;
 
-        [JsonPropertyName("code")]
+        [JsonProperty(PropertyName = "code")]       
         public int? Codigo;
 
-        [JsonPropertyName("fullName")]
+        [JsonProperty(PropertyName = "fullName")]    
         public string? NomeCompleto;
     }
 }

@@ -40,9 +40,25 @@ namespace Data.Proxy
         {
             throw new NotImplementedException();
         }
-        public Task<BancoModel> BuscarBanco(string codigoBanco)
+        public async Task<BancoModel> BuscarBanco(string codigoBanco)
         {
-            throw new NotImplementedException();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://brasilapi.com.br/api/banks/v1/{codigoBanco}");
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var responseBrasilApi = await client.SendAsync(request);//Pegando dados da API
+                    var contentResp = await responseBrasilApi.Content.ReadAsStringAsync();
+
+                    return JsonConvert.DeserializeObject<BancoModel>(contentResp) ?? new BancoModel();
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex.Message);
+                }
+
+            }
         }
 
     }

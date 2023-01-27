@@ -10,5 +10,6 @@ namespace Domain.Interfaces.Service
 {
     public interface IBancoService
     {
+        Task<BancoResponse> BuscarBanco(string cod);
     }
 }

@@ -13,10 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IEnderecoService, EnderecoService>();
-//builder.Services.AddSingleton<IBancoService, BancoService>();
+builder.Services.AddSingleton<IBancoService, BancoService>();
 builder.Services.AddSingleton<IBrasilApiProxy, BrasilApiProxy>();
 var config = new AutoMapper.MapperConfiguration(cfg => { cfg.AddProfile(new EnderecoMapping()); });
+var config2 = new AutoMapper.MapperConfiguration(cfg => { cfg.AddProfile(new BancoMapping()); });
 builder.Services.AddSingleton(config.CreateMapper());
+builder.Services.AddSingleton(config2.CreateMapper());
 
 
 var app = builder.Build();
